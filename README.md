@@ -9,7 +9,7 @@
 
 ## About the project
 
-This project was created to study the React, NodeJs and MongoDB with Linux, creating components, services and routes with React, this was done with the help of some youtube tutorials for better practice and learning. The design was created by Erica Frederico. 
+This project was created to study the React, NodeJs and MongoDB with Linux, creating components, services and routes with React, this was done with the help of some youtube tutorials for better practice and learning. The design was created by Erica Frederico.
 
 ## Objective
 
