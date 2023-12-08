@@ -1,22 +1,22 @@
 const empresa = require("../models/empresa")
 
-const create_empresa = {
+const create_empresa = async(req, res) => {
 
 }
 
-const get_empresa = {
+const get_empresa = async(req, res) => {
 
 }
 
-const get_empresa_id = {
+const get_empresa_id = async(req, res) => {
 
 }
 
-const update_empresa = {
+const update_empresa = async(req, res) => {
 
 }
 
-const delete_empresa = {
+const delete_empresa = async(req, res) => {
 
 }
 
