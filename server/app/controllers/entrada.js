@@ -1,11 +1,10 @@
 const entrada = require('../models/entrada')
 
 const create_entrada = async(req, res) => {
-
 }
 
 const get_entrada = async(req, res) => {
-
+    res.send('This is a get method');
 }
 
 const get_entrada_id = async(req, res) => {

@@ -14,6 +14,10 @@ const app = express();
 // middleware
 app.use(express.json())
 
+app.use((req, res, next) => {
+	next()
+})
+
 // routes
 app.use("/entrada", entrada)
 app.use("/funcionarios", funcionarios)
