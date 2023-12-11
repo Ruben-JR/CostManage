@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const config = require("./config");
 const app = require("./app");
 
-class Database {
+class server {
     constructor() {
         this._connect();
     }
@@ -22,4 +22,4 @@ class Database {
 
 }
 
-module.exports = new Database();
+module.exports = new server();
