@@ -1,25 +1,21 @@
 const mongoose = require("mongoose");
 
-const config = require("./config");
+const config = require("./config/config");
 const app = require("./app");
 
-class server {
-    constructor() {
-        this._connect();
-    }
 
-    _connect() {
-        mongoose.connect(config.mongo_uri).then(() => {
-            console.log("Connection ok");
-        }).catch((err) => {
-            console.error("Erro to connect", err);
-        });
+// NOTE: connect to db
+mongoose.connect(config.mongo_uri, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+})
+	.then(() => {
+		console.log('* CONNECTED TO DB')
+	})
+	.catch((error) => {
+		console.error('Error connecting to MongoDB:', error)
+	})
 
-        const server = app.listen(config.port, () => {
-            console.log("Server running on", config.port);
-        });
-    }
-
-}
-
-module.exports = new server();
+app.listen(config.port, () => {
+	console.log('* SERVER RUNNING ON', config.port)
+})
