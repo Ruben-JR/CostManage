@@ -9,7 +9,7 @@ const funcionariosSchema = new mongoose.Schema(
         email: { type: String, required: true },
         tipo_documento: { type: String, required: true },
         numero_documento: { type: Number, required: true },
-        estado: { type: string, required: true }
+        estado: { type: String, required: true }
     },
     { collection: "funcionarios" }
 )
