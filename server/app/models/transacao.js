@@ -11,6 +11,6 @@ const transacaoSchema = new mongoose.Schema(
     { collection: "transacao" }
 )
 
-const model = mongoose.model("transacao", transacaoSchema)
+const transacao = mongoose.model("transacao", transacaoSchema)
 
-module.exports = model
+module.exports = transacao

@@ -8,6 +8,6 @@ const tagSchema = new mongoose.Schema(
     { collection: "tag" }
 )
 
-const model = mongoose.model("tag", tagSchema)
+const tag = mongoose.model("tag", tagSchema)
 
-module.exports = model
+module.exports = tag

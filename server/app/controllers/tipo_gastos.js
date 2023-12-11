@@ -1,4 +1,4 @@
-const tipoGastos = require('../models/tipoGastos')
+const tipoGastos = require('../models/tipo_gastos')
 
 const create_tipoGastos = async(req, res) => {
 

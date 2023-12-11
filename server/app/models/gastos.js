@@ -13,6 +13,6 @@ const gastosSchema = new mongoose.Schema(
     { collection: "gastos" }
 )
 
-const model = mongoose.model("gastos", gastosSchema)
+const gastos = mongoose.model("gastos", gastosSchema)
 
-module.exports = model
+module.exports = gastos

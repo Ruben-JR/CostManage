@@ -12,6 +12,6 @@ const entradaSchema = new mongoose.Schema(
     { collection: "entrada" }
 )
 
-const model = mongoose.model("entrada", entradaSchema)
+const entrada = mongoose.model("entrada", entradaSchema)
 
-module.exports = model
+module.exports = entrada

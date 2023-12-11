@@ -9,6 +9,6 @@ const tipo_gastosSchema = new mongoose.Schema(
     { collection: "tipo_gastos" }
 )
 
-const model = mongoose.model("tipo_gastos", tipo_gastosSchema)
+const tipo_gastos = mongoose.model("tipo_gastos", tipo_gastosSchema)
 
-module.exports = model
+module.exports = tipo_gastos

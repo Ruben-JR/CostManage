@@ -14,6 +14,6 @@ const funcionariosSchema = new mongoose.Schema(
     { collection: "funcionarios" }
 )
 
-const model = mongoose.model("funcionarios", funcionariosSchema)
+const funcionarios = mongoose.model("funcionarios", funcionariosSchema)
 
-module.exports = model
+module.exports = funcionarios

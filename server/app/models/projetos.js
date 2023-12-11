@@ -13,6 +13,6 @@ const projetosSchema = new mongoose.Schema(
     { collection: "projetos" }
 )
 
-const model = mongoose.model("projetos", projetosSchema)
+const projetos = mongoose.model("projetos", projetosSchema)
 
-module.exports = model
+module.exports = projetos

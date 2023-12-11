@@ -6,7 +6,7 @@ const {
     get_tipoGastos_id,
     update_tipoGastos,
     delete_tipoGastos
-} = require("../controllers/tipoGastos")
+} = require("../controllers/tipo_gastos")
 
 const router = express.Router()
 
