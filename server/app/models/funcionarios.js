@@ -7,8 +7,8 @@ const funcionariosSchema = new mongoose.Schema(
         telefone: { type: Number, required: true },
         morada: { type: String, required: true },
         email: { type: String, required: true },
-        tipo_documento: { type: String, required: true },
-        numero_documento: { type: Number, required: true },
+        tipo_doc: { type: String, required: true },
+        numero_doc: { type: Number, required: true },
         estado: { type: String, required: true }
     },
     { collection: "funcionarios" }
