@@ -11,8 +11,8 @@ const transacao = require("./routes/transacao")
 // Express app
 const app = express();
 
-// middleware
-app.use(express.json())
+// NOTE: middleware
+app.use(express.json()) //get request body
 
 app.use((req, res, next) => {
 	next()
