@@ -21,8 +21,8 @@ const create_entrada = async(req, res) => {
 }
 
 const get_entrada = async(req, res) => {
-    const allentrada = req.params;
-    const findEntrada = entrada.find(allentrada);
+    const allEntrada = req.params;
+    const findEntrada = entrada.find(allEntrada);
     if(!findEntrada) {
         return res.status(404).json({ error: "Entradas not found" });
     }
