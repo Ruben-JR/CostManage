@@ -1,19 +1,19 @@
 const express = require('express')
 
 const {
-    create_tipoGastos,
-    get_tipoGastos,
-    get_tipoGastos_id,
-    update_tipoGastos,
-    delete_tipoGastos
+    create_tipo_gastos,
+    get_tipo_gastos,
+    get_tipo_gastos_id,
+    update_tipo_gastos,
+    delete_tipo_gastos
 } = require("../controllers/tipo_gastos")
 
 const router = express.Router()
 
-router.post("/create-tipoGastos", create_tipoGastos)
-router.get("/get-tipoGastos", get_tipoGastos)
-router.get("/get-tipoGastos-id/:id", get_tipoGastos_id)
-router.put("/update-tipoGastos/:id", update_tipoGastos)
-router.delete("/delete-tipoGastos/:id", delete_tipoGastos)
+router.post("/create-tipo_gastos", create_tipo_gastos)
+router.get("/get-tipo_gastos", get_tipo_gastos)
+router.get("/get-tipo_gastos-id/:id", get_tipo_gastos_id)
+router.put("/update-tipo_gastos/:id", update_tipo_gastos)
+router.delete("/delete-tipo_gastos/:id", delete_tipo_gastos)
 
 module.exports = router

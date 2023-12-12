@@ -23,7 +23,7 @@ const get_tag = async(req, res) => {
         return res.status(404).json({ error: "Tag not found" });
     }
 
-    res.json(findProjetos);
+    res.json(findTag);
 }
 
 const get_tag_id = async(req, res) => {
