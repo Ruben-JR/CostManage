@@ -34,7 +34,7 @@ const get_entrada_id = async(req, res) => {
     const idEntrada = req.params.id;
     const findIdEntrada = entrada.findOne((e) => e.id === idEntrada);
     if (!findIdEntrada) {
-        return res.status(404).json({ error: "Entrada not exist"})
+        return res.status(404).json({ error: "Entrada not exist"});
     }
 
     res.json(findIdEntrada)
@@ -54,18 +54,18 @@ const update_entrada = async(req, res) => {
     findEntrada.valor = idEntrada.valor;
     findEntrada.comprovativo = idEntrada.comprovativo;
 
-    res.send(findEntrada)
+    res.send(findEntrada).json("Entrada updated")
 }
 
 const delete_entrada = async(req, res) => {
     const idEntrada = req.params.id;
     const findEntrada = entrada.findOne((e) => e.id === idEntrada)
-    if(findEntrada !== -1) {
-        entrada.splice(findEntrada, 1);
-        res.status(204).json();
+    if(!findEntrada) {
+        res.status(404).json({ error: "Entrada not found"});
     }
 
-    res.status(404).json({ error: "Entrada not found"});
+    entrada.deleteOne(findEntrada);
+    res.status(204).json("Entrada deleted");
 }
 
 
