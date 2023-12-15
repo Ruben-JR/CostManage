@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class funcionariosschema(BaseModel):
+class funcionariosSchema(BaseModel):
     nome: str
     idade: int
     telefone: int

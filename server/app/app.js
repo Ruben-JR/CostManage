@@ -24,7 +24,7 @@ app.use("/funcionarios", funcionarios)
 app.use("/gastos", gastos)
 app.use("/projetos", projetos)
 app.use("/tag", tag)
-app.use("/tipo-gasto", tipo_gasto)
+app.use("/tipo-gastos", tipo_gasto)
 app.use("/transacao", transacao)
 
 module.exports = app
