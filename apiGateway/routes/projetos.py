@@ -1,12 +1,12 @@
 import os
-import request
+import requests
 
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from fastapi import fastapi, APIRouter, Depends, HttpException, Response
+from fastapi import APIRouter, Depends, HTTPException, Response
 
-from keycloak.authentication import get_user, check_user_role
-from schemas.projetos import projetosSchema
+from ..keycloak.keycloak_utils import get_user, check_user_role
+from ..schemas.projetos import projetosSchema
 
 load_dotenv()
 BACKEND_URL = os.getenv("BACKEND_URL")

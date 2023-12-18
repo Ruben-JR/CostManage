@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class projetosSchema(BaseModel):
-    nome; str
+    nome: str
     descrisao: str
     dataInicio: int
     dataFinal: int
