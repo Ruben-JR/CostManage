@@ -1,12 +1,12 @@
 import os
-import request
+import requests
 
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from fastapi import fastapi, APIRouter, Depends, HttpException, Response
+from fastapi import APIRouter, Depends, HTTPException, Response
 
-from keycloak.authentication import get_user, check_user_role
-from schemas.entrada import entradaSchema
+from ..keycloak.keycloak_utils import get_user, check_user_role
+from ..schemas.entrada import entradaSchema
 
 load_dotenv()
 BACKEND_URL = os.getenv("BACKEND_URL")
@@ -17,36 +17,36 @@ router = APIRouter(tags=["Entrada"])
 @router.post("/entrada/create-entrada")
 async def create_entrada(payload: entradaSchema, user: dict = Depends(get_user)):
     if user is None:
-        raise HttpException(status=401, detail="Invalide token or user information not found")
+        raise HTTPException(status=401, detail="Invalide token or user information not found")
 
     check_user_role(user, ["admin"])
 
     headers = {"content-type": "application/json"}
-    r = request.post(BACKEND_URL, headers=headers + "/entrada/create-entrada", json=payload.dict())
+    r = requests.post(BACKEND_URL, headers=headers + "/entrada/create-entrada", json=payload.dict())
     if r.status == 200:
         response = r.json()
         return response
     elif r.status == 404:
-        raise HttpException(status=404, detail="Intem not created")
+        raise HTTPException(status=404, detail="Intem not created")
     else:
-        raise HttpException(status=r.status, detail="server error")
+        raise HTTPException(status=r.status, detail="server error")
 
 
 @router.get("/entrada/get-entrada")
 async def get_entrada(user: dict = Depends(get_user)):
     if user is None:
-        raise HttpException(status=401, detail="Inalide token or user information not found")
+        raise HTTPException(status=401, detail="Inalide token or user information not found")
 
     check_user_role(user, ["admin"])
 
-    r.request.get(BACKEND_URL + "/entrada/get-entrada")
+    r.requests.get(BACKEND_URL + "/entrada/get-entrada")
     if r.status == 200:
         response = r.json()
         return response
     elif r.status == 404:
-        raise HttpException(status=404, detail="Items not found")
+        raise HTTPException(status=404, detail="Items not found")
     else:
-        raise HttpException(status=r.status, detail="server error")
+        raise HTTPException(status=r.status, detail="server error")
 
 
 @router.get("/entrada/get-entrada-id/{id}")
@@ -56,7 +56,7 @@ async def get_entrada_id(id: int, user: dict = Depends(get_user)):
 
     check_user_role(user, ['Admin'])
 
-    r = requests.get(BACKEND_URL + f"/entrada/get-entrada-id/{id}")
+    r = requestss.get(BACKEND_URL + f"/entrada/get-entrada-id/{id}")
     if r.status == 200:
         response = r.json()
         return response
@@ -74,7 +74,7 @@ async def update_entrada(id: int, payload: entradaSchema, user: dict = Depends(g
     check_user_role(user, ['Admin'])
 
     headers = {"Content-Type": "application/json"}
-    r = requests.put(BACKEND_URL, headers=headers + f"/update-entrada/{id}", json=payload.dict())
+    r = requestss.put(BACKEND_URL, headers=headers + f"/update-entrada/{id}", json=payload.dict())
     if r.status == 200:
         response = r.json()
         return response
@@ -92,7 +92,7 @@ async def delete_entrada(id: int, user: dict = Depends(get_user)):
     check_user_role(user, ['Admin'])
 
     headers = {"Content-Type": "application/json"}
-    r = requests.put(BACKEND_URL, headers=headers + f"/delete-entrada/{id}")
+    r = requestss.put(BACKEND_URL, headers=headers + f"/delete-entrada/{id}")
     if r.status_code == 200:
         response = r.json()
         return response

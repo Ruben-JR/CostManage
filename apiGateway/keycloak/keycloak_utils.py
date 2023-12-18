@@ -1,22 +1,41 @@
 import os
 from dotenv import load_dotenv
-from keycloak import KeycloakOpenID
-from fastapi import HTTPException
+from keycloak import KeycloakOpenIDConnection, KeycloakAdmin
+from fastapi import HTTPException, Depends
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+
 
 load_dotenv()
 
 
-keycloak_connection = KeycloakOpenID(
+keycloak_connection = KeycloakOpenIDConnection(
     server_url=os.getenv("SERVER_URL"),
-    username=os.getenv("USERNAME"),
-    password=os.getenv("PASSWORD"),
     realm_name=os.getenv("REAL_NAME"),
     client_id=os.getenv("USERNAME"),
-    client_secret_key=os.getenv("CLIENT_SERCRET")
+    client_secret_key=os.getenv("CLIENT_SERCRET"),
+    verify=True
 )
 
+security = HTTPBearer()
 keycloak_admin = KeycloakAdmin(connection=keycloak_connection)
-access_token = keycloak_admin.token['access_token']
+# access_token = keycloak_admin.token['access_token']
+
+async def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    if not credentials:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+
+    access_token = credentials.credentials
+
+    try:
+        userinfo = keycloak_connection.keycloak_openid.userinfo(token=access_token)
+    except Exception as err:
+        print(err.__str__())
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+    if "sub" in userinfo:
+        return userinfo
+
+    raise HTTPException
 
 
 def check_user_role(user: dict, allowed_roles: list[str]):
