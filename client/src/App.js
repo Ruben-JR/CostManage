@@ -1,9 +1,13 @@
-import Profile from './pages/auth/profile';
+import Toobar from "./components/toolbar";
+import Sidenav from "./components/sidenav";
+import Footer from "./components/footer";
 
 function App() {
   return (
     <div>
-      <Profile />
+      <Toobar />
+      <Sidenav />
+      {/* <Footer /> */}
     </div>
   );
 }
