@@ -1,14 +1,11 @@
 import React from 'react';
 
-import Home from "../pages/home";
-import Funcionarios from '../pages/funcionarios';
-
+import Entrada from '../pages/entrada';
 
 const Body = () => {
     return (
         <div className="p-14 sm:ml-56 mt-12">
-            {/* <Home /> */}
-            <Funcionarios />
+            <Entrada />
         </div>
     );
 }
