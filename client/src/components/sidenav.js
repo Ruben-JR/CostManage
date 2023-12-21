@@ -7,9 +7,9 @@ const Sidenav = () => {
         <div>
             <aside id="separator-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
                 <div className="h-full px-3 py-7 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-                    <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
-                        <img src={logo} class="h-6 me-3 sm:h-7" alt="CostManage Logo" />
-                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">CostManage</span>
+                    <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5">
+                        <img src={logo} className="h-6 me-3 sm:h-7" alt="CostManage Logo" />
+                        <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">CostManage</span>
                     </a>
                     <ul className="space-y-2 font-medium mt-7">
                         <li>
