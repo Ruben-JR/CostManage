@@ -16,6 +16,8 @@ import Empresa from '../pages/admin/empresa';
 import TipoGasto from '../pages/admin/tipo_gasto';
 
 //auth
+// import Login from '../pages/auth/login';
+// import Register from '../pages/auth/register';
 import Profile from '../pages/auth/profile';
 
 const Sidenav = () => {
@@ -136,6 +138,7 @@ const Sidenav = () => {
                         <Route path="/tipo-gasto" element={<TipoGasto />} />
                         <Route path="/empresa" element={<Empresa />} />
                         <Route path="/profile" element={<Profile />} />
+                        {/* <Route path="/login" element={<Login/> } /> */}
                     </Routes>
                 </div>
             </Router>
