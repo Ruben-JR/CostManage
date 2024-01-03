@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Reset_password = () => {
+const ResetPassword = () => {
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -38,7 +38,7 @@ const Reset_password = () => {
                     </div>
 
                     <div className="text-sm">
-                        <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                        {/* <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a> */}
                     </div>
 
                     <div>
@@ -50,4 +50,4 @@ const Reset_password = () => {
     );
 };
 
-export default Reset_password;
+export default ResetPassword;
