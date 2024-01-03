@@ -93,35 +93,48 @@ const Charts = () => {
 
     const chartsEntrada = {
         series: [{
-            data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+            name: 'Entrada',
+            type: 'column',
+            data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
+        }, {
+            name: 'Social Media',
+            type: 'line',
+            data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16]
         }],
         chart: {
-            type: 'bar',
-            height: 350
+            height: 350,
+            type: 'line',
         },
-        plotOptions: {
-            bar: {
-                borderRadius: 4,
-                horizontal: true,
-            }
+        stroke: {
+            width: [0, 4]
         },
         title: {
-            text: 'Entrada',
-            align: 'left',
+            text: 'Entrada'
         },
         dataLabels: {
-            enabled: false
+            enabled: true,
+            enabledOnSeries: [1]
         },
+        labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001', '06 Jan 2001', '07 Jan 2001', '08 Jan 2001', '09 Jan 2001', '10 Jan 2001', '11 Jan 2001', '12 Jan 2001'],
         xaxis: {
-            categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-                'United States', 'China', 'Germany'
-            ],
-        }
-    };
+            type: 'datetime'
+        },
+        yaxis: [{
+            title: {
+                text: 'Website Blog',
+            },
 
+        }, {
+            opposite: true,
+            title: {
+                text: 'Social Media'
+            }
+        }]
+    };
+    
     const chartsGastos = {
         series: [{
-            name: 'Website Blog',
+            name: 'Gastos',
             type: 'column',
             data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
         }, {
@@ -160,52 +173,11 @@ const Charts = () => {
         }]
     };
 
-    const chartsTransacao = {
-        series: [{
-            name: 'Website Blog',
-            type: 'column',
-            data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
-        }, {
-            name: 'Social Media',
-            type: 'line',
-            data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16]
-        }],
-        chart: {
-            height: 350,
-            type: 'line',
-        },
-        stroke: {
-            width: [0, 4]
-        },
-        title: {
-            text: 'Transação'
-        },
-        dataLabels: {
-            enabled: true,
-            enabledOnSeries: [1]
-        },
-        labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001', '06 Jan 2001', '07 Jan 2001', '08 Jan 2001', '09 Jan 2001', '10 Jan 2001', '11 Jan 2001', '12 Jan 2001'],
-        xaxis: {
-            type: 'datetime'
-        },
-        yaxis: [{
-            title: {
-                text: 'Website Blog',
-            },
-
-        }, {
-            opposite: true,
-            title: {
-                text: 'Social Media'
-            }
-        }]
-    };
-
     return (
-        <div className='flex'>
+        <div className='flex mt-10'>
             <div>
                 <Chart
-                    className="p-5"
+                    className="p-8"
                     options={chartsProjetos}
                     series={chartsProjetos.series}
                     type="line"
@@ -214,7 +186,7 @@ const Charts = () => {
                 />
 
                 <Chart
-                    className="p-5"
+                    className="p-8"
                     options={chartsFuncionarios}
                     series={chartsFuncionarios.series}
                     type="line"
@@ -222,32 +194,24 @@ const Charts = () => {
                     height={300}
                 />
 
-                <Chart
-                    className="p-5"
-                    options={chartsEntrada}
-                    series={chartsEntrada.series}
-                    type="line"
-                    width={400}
-                    height={300}
-                />
             </div>
             <div>
                 <Chart
-                    className="p-5"
+                    className="p-8"
+                    options={chartsEntrada}
+                    series={chartsEntrada.series}
+                    type="line"
+                    width={1100}
+                    height={300}
+                />
+
+                <Chart
+                    className="p-8"
                     options={chartsGastos}
                     series={chartsGastos.series}
                     type="line"
                     width={1100}
-                    height={450}
-                />
-
-                <Chart
-                    className="p-5"
-                    options={chartsTransacao}
-                    series={chartsTransacao.series}
-                    type="line"
-                    width={1100}
-                    height={450}
+                    height={300}
                 />
             </div>
         </div>
