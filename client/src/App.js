@@ -1,6 +1,6 @@
 import Toobar from "./components/toolbar";
 import Sidenav from "./components/sidenav";
-import Footer from "./components/footer";
+// import Footer from "./components/footer";
 
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div>
       <Toobar />
       <Sidenav />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
