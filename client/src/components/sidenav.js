@@ -9,8 +9,11 @@ import Funcionarios from '../pages/funcionarios';
 import Gastos from '../pages/gastos';
 import Projetos from '../pages/projetos';
 import Transacao from '../pages/transacao';
-import TipoGasto from '../pages/admin/tipo_gasto';
+
+//admin
 import Tag from '../pages/admin/tag';
+import Empresa from '../pages/admin/empresa';
+import TipoGasto from '../pages/admin/tipo_gasto';
 
 const Sidenav = () => {
     return (
@@ -81,6 +84,14 @@ const Sidenav = () => {
                                 </Link>
                             </li>
                             <li>
+                                <Link to="/empresa" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 1h12M3 1v16M3 1H2m13 0v16m0-16h1m-1 16H3m12 0h2M3 17H1M6 4h1v1H6V4Zm5 0h1v1h-1V4ZM6 8h1v1H6V8Zm5 0h1v1h-1V8Zm-3 4h2a1 1 0 0 1 1 1v4H7v-4a1 1 0 0 1 1-1Z" />
+                                    </svg>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">Empresa</span>
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to="/tipo-gasto" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                     <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 12v5m5-9v9m5-5v5m5-9v9M1 7l5-6 5 6 5-6" />
@@ -120,6 +131,7 @@ const Sidenav = () => {
                         <Route path="/projetos" element={<Projetos />} />
                         <Route path="/transacao" element={<Transacao />} />
                         <Route path="/tipo-gasto" element={<TipoGasto />} />
+                        <Route path="/empresa" element={<Empresa />} />
                     </Routes>
                 </div>
             </Router>
