@@ -15,6 +15,9 @@ import Tag from '../pages/admin/tag';
 import Empresa from '../pages/admin/empresa';
 import TipoGasto from '../pages/admin/tipo_gasto';
 
+//auth
+import Profile from '../pages/auth/profile';
+
 const Sidenav = () => {
     return (
         <div>
@@ -132,6 +135,7 @@ const Sidenav = () => {
                         <Route path="/transacao" element={<Transacao />} />
                         <Route path="/tipo-gasto" element={<TipoGasto />} />
                         <Route path="/empresa" element={<Empresa />} />
+                        <Route path="/profile" element={<Profile />} />
                     </Routes>
                 </div>
             </Router>
