@@ -7,6 +7,7 @@ import Home from '../pages/home';
 import Entrada from '../pages/entrada';
 import Funcionarios from '../pages/funcionarios';
 import Gastos from '../pages/gastos';
+import Projetos from '../pages/projetos';
 import Tag from '../pages/admin/tag';
 
 const Sidenav = () => {
@@ -106,6 +107,7 @@ const Sidenav = () => {
                         <Route path="/funcionarios" element={<Funcionarios />} />
                         <Route path="/tag" element={<Tag/>} />
                         <Route path="/gastos" element={<Gastos/>} />
+                        <Route path="/projetos" element={<Projetos/>} />
                     </Routes>
                 </div>
             </Router>

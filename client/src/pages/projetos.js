@@ -1,19 +1,34 @@
 import React from "react";
 
-const Tag = () => {
+const Projetos = () => {
     return (
         <div>
             <button data-modal-target="default-modal" data-modal-toggle="default-modal" className="block text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:dark:bg-gray-800 bg-gray-50 dark:bg-gray-700 dark:text-gray-100" type="button">
-                Criar tag
+                Criar projeto
             </button>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" className="px-6 py-3">Tag</th>
+                            <th scope="col" className="px-6 py-3">Projeto</th>
                             <th scope="col" className="px-6 py-3">
                                 <div className="flex items-center">Descrição</div>
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                <div className="flex items-center">Data inicio</div>
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                <div className="flex items-center">Data final</div>
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                <div className="flex items-center">Valor</div>
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                <div className="flex items-center">Tipo</div>
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                <div className="flex items-center">Estado</div>
                             </th>
                             <th scope="col" className="px-4 py-1">
                                 <span className="sr-only">Edit</span>
@@ -30,6 +45,21 @@ const Tag = () => {
                             </th>
                             <td className="px-6 py-4">
                                 <p>Exemplar</p>
+                            </td>
+                            <td className="px-6 py-4">
+                                <p>02-12-2023</p>
+                            </td>
+                            <td className="px-6 py-4">
+                                <p>02-12-2023</p>
+                            </td>
+                            <td className="px-6 py-4">
+                                <p>2.9000.000</p>
+                            </td>
+                            <td className="px-6 py-4">
+                                <p>comprovativo.pdf</p>
+                            </td>
+                            <td className="px-6 py-4">
+                                <p>Activo</p>
                             </td>
                             <td className="px-4 py-1 text-right">
                                 <svg className="w-4 h-4 text-gray-800 dark:text-white hover:dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
@@ -49,4 +79,4 @@ const Tag = () => {
     );
 }
 
-export default Tag;
+export default Projetos;
