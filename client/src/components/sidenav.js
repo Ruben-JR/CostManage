@@ -9,6 +9,7 @@ import Funcionarios from '../pages/funcionarios';
 import Gastos from '../pages/gastos';
 import Projetos from '../pages/projetos';
 import Transacao from '../pages/transacao';
+import TipoGasto from '../pages/admin/tipo_gasto';
 import Tag from '../pages/admin/tag';
 
 const Sidenav = () => {
@@ -79,6 +80,14 @@ const Sidenav = () => {
                                     <span className="flex-1 ms-3 whitespace-nowrap">Transação</span>
                                 </Link>
                             </li>
+                            <li>
+                                <Link to="/tipo-gasto" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 12v5m5-9v9m5-5v5m5-9v9M1 7l5-6 5 6 5-6" />
+                                    </svg>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">Tipo Gastos</span>
+                                </Link>
+                            </li>
                         </ul>
                         <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                             <li>
@@ -106,10 +115,11 @@ const Sidenav = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/entrada" element={<Entrada />} />
                         <Route path="/funcionarios" element={<Funcionarios />} />
-                        <Route path="/tag" element={<Tag/>} />
-                        <Route path="/gastos" element={<Gastos/>} />
-                        <Route path="/projetos" element={<Projetos/>} />
-                        <Route path="/transacao" element={<Transacao/>} />
+                        <Route path="/tag" element={<Tag />} />
+                        <Route path="/gastos" element={<Gastos />} />
+                        <Route path="/projetos" element={<Projetos />} />
+                        <Route path="/transacao" element={<Transacao />} />
+                        <Route path="/tipo-gasto" element={<TipoGasto />} />
                     </Routes>
                 </div>
             </Router>
