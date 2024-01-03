@@ -6,6 +6,7 @@ import logo from '../assets/img/logo.png';
 import Home from '../pages/home';
 import Entrada from '../pages/entrada';
 import Funcionarios from '../pages/funcionarios';
+import Tag from '../pages/admin/tag';
 
 const Sidenav = () => {
     return (
@@ -102,6 +103,7 @@ const Sidenav = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/entrada" element={<Entrada />} />
                         <Route path="/funcionarios" element={<Funcionarios />} />
+                        <Route path="/tag" element={<Tag/>} />
                     </Routes>
                 </div>
             </Router>

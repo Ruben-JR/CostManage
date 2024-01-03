@@ -1,38 +1,19 @@
-import React from 'react';
-// import Modal from '../components/shared/modal';
+import React from "react";
 
-const Funcionarios = () => {
+const Tag = () => {
     return (
         <div>
             <button data-modal-target="default-modal" data-modal-toggle="default-modal" className="block text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:dark:bg-gray-800 bg-gray-50 dark:bg-gray-700 dark:text-gray-100" type="button">
-                Criar funcionários
+                Criar tag
             </button>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" className="px-6 py-3">Funcionários</th>
+                            <th scope="col" className="px-6 py-3">Nome</th>
                             <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center">Idade</div>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center">Telefone</div>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center">Modara</div>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center">Email</div>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center">Tipo doc</div>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center">Numero doc</div>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center">Estado</div>
+                                <div className="flex items-center">Descrição</div>
                             </th>
                             <th scope="col" className="px-4 py-1">
                                 <span className="sr-only">Edit</span>
@@ -48,25 +29,7 @@ const Funcionarios = () => {
                                 <p>costMange</p>
                             </th>
                             <td className="px-6 py-4">
-                                <p>18</p>
-                            </td>
-                            <td className="px-6 py-4">
-                                <p>5265725</p>
-                            </td>
-                            <td className="px-6 py-4">
-                                <p>Praia</p>
-                            </td>
-                            <td className="px-6 py-4">
-                                <p>costmanage@gmail.com</p>
-                            </td>
-                            <td className="px-6 py-4">
-                                <p>CNI</p>
-                            </td>
-                            <td className="px-6 py-4">
-                                <p>19993645M005F</p>
-                            </td>
-                            <td className="px-6 py-4">
-                                <p>Activo</p>
+                                <p>Exemplar</p>
                             </td>
                             <td className="px-4 py-1 text-right">
                                 <svg className="w-4 h-4 text-gray-800 dark:text-white hover:dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
@@ -86,4 +49,4 @@ const Funcionarios = () => {
     );
 }
 
-export default Funcionarios;
+export default Tag;
