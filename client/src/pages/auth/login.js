@@ -1,5 +1,5 @@
 import React from 'react';
-// import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -27,7 +27,7 @@ const Login = () => {
               <div className="flex items-center justify-between">
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
                 <div className="text-sm">
-                  {/* <Link to="/password" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</Link> */}
+                  <Link to="/password" className="font-semibold text-indigo-600 hover:text-gray-600 dark:text-gray-800">Forgot password?</Link>
                 </div>
               </div>
               <div className="mt-2">
@@ -43,11 +43,11 @@ const Login = () => {
             </div>
 
             <div className="text-sm">
-              {/* <p className="font-semibold text-indigo-600 hover:text-indigo-500">Don't have an account? <Link to="/register">Register here.</Link></p> */}
+              <p className="font-semibold text-indigo-600 hover:text-gray-600 dark:text-gray-800">Don't have an account? <Link to="/register">Register here.</Link></p>
             </div>
 
             <div>
-              <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
+              <button type="submit" className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:dark:bg-gray-600 bg-gray-50 dark:bg-gray-800 dark:text-gray-100">Login</button>
             </div>
           </form>
         </div>

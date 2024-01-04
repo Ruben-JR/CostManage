@@ -1,14 +1,15 @@
-import Toobar from "./components/toolbar";
-import Sidenav from "./components/sidenav";
-// import Footer from "./components/footer";
+import React from "react";
 
+import Body from "./components/body";
+// import Login from "./pages/auth/login";
+// import Register from './pages/auth/register';
 
 function App() {
   return (
     <div>
-      <Toobar />
-      <Sidenav />
-      {/* <Footer /> */}
+      {/* <Login /> */}
+      {/* <Register /> */}
+      <Body />
     </div>
   );
 }
