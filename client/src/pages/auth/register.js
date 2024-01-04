@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     return (
@@ -83,11 +83,11 @@ const Register = () => {
                     </div>
 
                     <div className="text-sm">
-                        {/* <p className="font-semibold text-indigo-600 hover:text-indigo-500">Already have an account? <Link to="/login">Login.</Link></p> */}
+                        <p className="font-semibold text-indigo-600 hover:text-gray-600 dark:text-gray-800">Already have an account? <Link to="/login">Login.</Link></p>
                     </div>
 
                     <div>
-                        <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
+                        <button type="submit" className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:dark:bg-gray-600 bg-gray-50 dark:bg-gray-800 dark:text-gray-100">Login</button>
                     </div>
                 </form>
             </div>

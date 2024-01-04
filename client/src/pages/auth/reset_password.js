@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ResetPassword = () => {
     return (
@@ -9,7 +10,7 @@ const ResetPassword = () => {
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form class="max-w-sm mx-auto">
-                    <div>
+                    <div className='py-3'>
                         <label htmlFor="old_password" className="block text-sm font-medium leading-6 text-gray-900">Old password</label>
                         <div className="mt-2">
                             <input
@@ -23,7 +24,7 @@ const ResetPassword = () => {
                         </div>
                     </div>
 
-                    <div>
+                    <div className='py-3'>
                         <label htmlFor="new_password" className="block text-sm font-medium leading-6 text-gray-900">New password</label>
                         <div className="mt-2">
                             <input
@@ -38,11 +39,11 @@ const ResetPassword = () => {
                     </div>
 
                     <div className="text-sm">
-                        {/* <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a> */}
+                        <p className="font-semibold text-indigo-600 hover:text-gray-600 dark:text-gray-800"><Link to="/login">Back to login.</Link></p>
                     </div>
 
-                    <div>
-                        <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Reset password</button>
+                    <div className='py-3'>
+                        <button type="submit" className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:dark:bg-gray-600 bg-gray-50 dark:bg-gray-800 dark:text-gray-100">Reset password</button>
                     </div>
                 </form>
             </div>
