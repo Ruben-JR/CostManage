@@ -3,11 +3,9 @@ const mongoose = require("mongoose")
 const empresaSchema = new mongoose.Schema(
     {
         nome: { type: String, required: true },
-        descricao: { type: String, required: true },
-        data: { type: Date, required: true },
-        estado: { type: String, required: true },
-        valor: { type: Number, required: true },
-        comprovativo: { type: String, required: true }
+        telefone: { type: Number, required: true },
+        localizacao: { type: String, required: true },
+        email: { type: String, required: true },
     },
     { collection: "empresa" }
 )

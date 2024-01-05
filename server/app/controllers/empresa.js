@@ -1,71 +1,67 @@
 const empresa = require('../models/empresa')
 
 const create_empresa = async(req, res) => {
-    const { nome, descricao, data, estado, valor, comprovativo } = req.body;
-    if (!nome && !descricao && !data && !estado && !valor && !comprovativo) {
+    const { nome, telefone, localizacao, email } = req.body;
+    if (!nome && !telefone && !localizacao && !email) {
         return res.status(400).json({ error: "Missing requires fields" });
     }
 
     const datas = {
         nome,
-        descricao,
-        data,
-        estado,
-        valor,
-        comprovativo
+        telefone,
+        localizacao,
+        email,
     }
 
     empresa.create(datas);
 
-    res.status(200).json("Entrada was created");
+    res.status(200).json("Empresa was created");
 }
 
 const get_empresa = async(req, res) => {
-    const allEntrada = req.params;
-    const findEntrada = empresa.find(allEntrada);
-    if(!findEntrada) {
-        return res.status(404).json({ error: "Entradas not found" });
+    const allEmpresa = req.params;
+    const findEmpresa = empresa.find(allEmpresa);
+    if(!findEmpresa) {
+        return res.status(404).json({ error: "Empresa not found" });
     }
 
-    res.json(findEntrada);
+    res.json(findEmpresa);
 }
 
 const get_empresa_id = async(req, res) => {
-    const idEntrada = req.params.id;
-    const findIdEntrada = empresa.findOne((e) => e.id === idEntrada);
-    if (!findIdEntrada) {
-        return res.status(404).json({ error: "Entrada not exist"});
+    const idEmpresa = req.params.id;
+    const findIdEmpresa = empresa.findOne((e) => e.id === idEmpresa);
+    if (!findIdEmpresa) {
+        return res.status(404).json({ error: "Empresa not exist"});
     }
 
-    res.json(findIdEntrada)
+    res.json(findIdEmpresa)
 }
 
 const update_empresa = async(req, res) => {
-    const idEntrada = req.params
-    const findEntrada = empresa.findOne((e) => e.id === idEntrada.id);
-    if(!findEntrada) {
-        return res.status(404).json({ error: "Entrada not found"});
+    const idEmpresa = req.params
+    const findEmpresa = empresa.findOne((e) => e.id === idEmpresa.id);
+    if(!findEmpresa) {
+        return res.status(404).json({ error: "Empresa not found"});
     }
 
-    findEntrada.nome = idEntrada.nome;
-    findEntrada.descricao  = idEntrada.descricao;
-    findEntrada.data = idEntrada.data;
-    findEntrada.estado = idEntrada.estado;
-    findEntrada.valor = idEntrada.valor;
-    findEntrada.comprovativo = idEntrada.comprovativo;
+    findEmpresa.nome = idEmpresa.nome;
+    findEmpresa.telefone  = idEmpresa.telefone;
+    findEmpresa.localizacao = idEmpresa.localizacao;
+    findEmpresa.email = idEmpresa.email;
 
-    res.send(findEntrada).json("Entrada updated")
+    res.send(findEmpresa).json("Empresa updated")
 }
 
 const delete_empresa = async(req, res) => {
-    const idEntrada = req.params.id;
-    const findEntrada = empresa.findOne((e) => e.id === idEntrada)
-    if(!findEntrada) {
-        res.status(404).json({ error: "Entrada not found"});
+    const idEmpresa = req.params.id;
+    const findEmpresa = empresa.findOne((e) => e.id === idEmpresa)
+    if(!findEmpresa) {
+        res.status(404).json({ error: "Empresa not found"});
     }
 
-    empresa.deleteOne(findEntrada);
-    res.status(204).json("Entrada deleted");
+    empresa.deleteOne(findEmpresa);
+    res.status(204).json("Empresa deleted");
 }
 
 

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const entrada = require("./routes/entrada")
 const funcionarios = require("./routes/funcionarios")
@@ -11,6 +12,7 @@ const empresa = require("./routes/empresa")
 
 // Express app
 const app = express();
+app.use(cors());	
 
 // NOTE: middleware
 app.use(express.json()) //get request body

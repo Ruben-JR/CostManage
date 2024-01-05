@@ -6,7 +6,7 @@ const projetosSchema = new mongoose.Schema(
         descrisao: { type: String, required: true },
         dataInicio: { type: Date, require: true },
         dataFinal: { type: Date, require: true },
-        valorToral: { type: Number, require: true },
+        valorTotal: { type: Number, require: true },
         estado: { type: String, require: true },
         tipo: { type: String, require: false}
     },

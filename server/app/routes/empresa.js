@@ -15,3 +15,5 @@ router.get("/get-empresa", get_empresa)
 router.get("/get-empresa-id/:id", get_empresa_id)
 router.put("update-empresa/:id", update_empresa)
 router.delete("delete-empresa/:id", delete_empresa)
+
+module.exports = router
