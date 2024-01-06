@@ -1,14 +1,26 @@
 import { React, useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 
 import * as api from '../services/ApiProjetos';
+import Modal from '../components/ui/modal';
 
 const Projetos = () => {
     const [projetos, setProjetos] = useState([]);
+    const [newProjetos, setNewProjetos] = useState([]);
+
 
     useEffect(() => {
         get_projetos();
     }, []);
+
+    const create_projetos = async () => {
+        try {
+            const newProjetosData = await api.create_projetos(newProjetos);
+            setProjetos(projetos, newProjetosData);
+            setNewProjetos('');
+        } catch (error) {
+            console.error("Error creatind projetos", error);
+        }
+    }
 
     const get_projetos = async () => {
         try {
@@ -19,22 +31,32 @@ const Projetos = () => {
         }
     }
 
+    const update_projetos = async (id) => {
+        try {
+            const updateProjetos = await api.update_projetos(id)
+            setProjetos([projetos, updateProjetos]);
+        } catch (error) {
+            console.error("Error updating projetos", error);
+        }
+    }
+
     const delete_projetos = async (id) => {
         try {
             await api.delete_projetos(id);
             setProjetos(projetos.filter((item) => item.id !== id));
-        } catch(error) {
+        } catch (error) {
             console.error("Error deleting projetos", error)
         }
     }
 
     return (
         <div>
-            <Link to="/new-projetos">
-                <button data-modal-target="default-modal" data-modal-toggle="default-modal" className="block text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:dark:bg-gray-800 bg-gray-50 dark:bg-gray-700 dark:text-gray-100" type="button">
-                    Criar projeto
-                </button>
-            </Link>
+            <button 
+                className="block text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:dark:bg-gray-800 bg-gray-50 dark:bg-gray-700 dark:text-gray-100" type="button"
+                data-modal-target="default-modal" 
+                data-modal-toggle="default-modal" >
+                Criar projeto
+            </button>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -68,22 +90,22 @@ const Projetos = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {projetos && Array.isArray(projetos) && projetos.map((proj) => (
+                        {Array.isArray(projetos) && projetos.map((proj) => (
                             <tr key={proj.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p>{proj.nome}</p>
+                                    <p>{proj.nome || 'N/A'}</p>
                                 </th><td className="px-6 py-4">
-                                    <p>{proj.descrisao}</p>
+                                    <p>{proj.descrisao || 'N/A'}</p>
                                 </td><td className="px-6 py-4">
-                                    <p>{proj.dataInicio}</p>
+                                    <p>{proj.dataInicio || 'N/A'}</p>
                                 </td><td className="px-6 py-4">
-                                    <p>{proj.dataFinal}</p>
+                                    <p>{proj.dataFinal || 'N/A'}</p>
                                 </td><td className="px-6 py-4">
-                                    <p>{proj.valor}</p>
+                                    <p>{proj.valor || 'N/A'}</p>
                                 </td><td className="px-6 py-4">
-                                    <p>{proj.tipo}</p>
+                                    <p>{proj.tipo || 'N/A'}</p>
                                 </td><td className="px-6 py-4">
-                                    <p>{proj.estado}</p>
+                                    <p>{proj.estado || 'N/A'}</p>
                                 </td>
                                 <td className="px-4 py-1 text-right">
                                     <svg className="w-4 h-4 text-gray-800 dark:text-white hover:dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
@@ -91,8 +113,8 @@ const Projetos = () => {
                                     </svg>
                                 </td>
                                 <td className="px-4 py-1 text-right">
-                                    <svg className="w-4 h-4 text-gray-800 dark:text-white hover:dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                        <path onClick={() => delete_projetos(proj.id)} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
+                                    <svg onClick={() => delete_projetos(proj.id)} className="w-4 h-4 text-gray-800 dark:text-white hover:dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
                                     </svg>
                                 </td>
                             </tr>
@@ -100,6 +122,96 @@ const Projetos = () => {
                     </tbody>
                 </table>
             </div>
+
+            {/* Modal form to create projetos */}
+            <Modal id="default-modal">
+                <div>
+                    <p className="text-3xl mt-14 text-gray-500 sm:text-center dark:text-gray-400">Crie um projeto</p>
+                    <form className="max-w-md mx-auto" onSubmit={create_projetos}>
+                        <div className="relative z-0 w-full mb-5 mt-14 group">
+                            <input 
+                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required 
+                                type="text" 
+                                name="nome" 
+                                id="nome" />
+                            <label htmlFor="nome" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nome</label>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input type="text" name="descricao" id="descricao" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label htmlFor="descricao" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Descrição</label>
+                        </div>
+                        <div className="grid md:grid-cols-2 md:gap-6">
+                            <div className="relative z-0 w-full mb-5 group">
+                                <input type="date" name="data_inicio" id="data_inicio" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <label htmlFor="data_inicio" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Data inicio</label>
+                            </div>
+                            <div className="relative z-0 w-full mb-5 group">
+                                <input type="date" name="data_final" id="data_final" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <label htmlFor="data_final" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Data final</label>
+                            </div>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input type="number" name="valor" id="valor" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label htmlFor="valor" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Valor</label>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input type="text" name="tipo" id="tipo" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label htmlFor="tipo" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tipo</label>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input type="text" name="estado" id="estado" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label htmlFor="estado" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Estado</label>
+                        </div>
+                        <button type="submit" className="block text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:dark:bg-gray-800 bg-gray-50 dark:bg-gray-700 dark:text-gray-100">Submit</button>
+                    </form>
+                </div>
+            </Modal>
+
+            {/* Modal form to create projetos */}
+            <Modal id="default-modal">
+                <div>
+                    <form className="max-w-md mx-auto" onSubmit={update_projetos}>
+                        <div className="relative z-0 w-full mb-5 mt-14 group">
+                            <input
+                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
+                                type="text"
+                                name="nome"
+                                id="nome"
+                                value={projetos.nome}
+                                onChange={(e) => setProjetos(e.target.value)}
+                            />
+                            <label htmlFor="nome" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nome</label>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input type="text" name="descricao" id="descricao" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label htmlFor="descricao" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Descrição</label>
+                        </div>
+                        <div className="grid md:grid-cols-2 md:gap-6">
+                            <div className="relative z-0 w-full mb-5 group">
+                                <input type="date" name="data_inicio" id="data_inicio" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <label htmlFor="data_inicio" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Data inicio</label>
+                            </div>
+                            <div className="relative z-0 w-full mb-5 group">
+                                <input type="date" name="data_final" id="data_final" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <label htmlFor="data_final" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Data final</label>
+                            </div>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input type="number" name="valor" id="valor" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label htmlFor="valor" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Valor</label>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input type="text" name="tipo" id="tipo" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label htmlFor="tipo" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tipo</label>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input type="text" name="estado" id="estado" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label htmlFor="estado" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Estado</label>
+                        </div>
+                        <button type="submit" className="block text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:dark:bg-gray-800 bg-gray-50 dark:bg-gray-700 dark:text-gray-100">Submit</button>
+                    </form>
+                </div>
+            </Modal>
         </div>
     );
 }

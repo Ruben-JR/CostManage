@@ -11,7 +11,6 @@ import Funcionarios from '../pages/funcionarios';
 import Gastos from '../pages/gastos';
 import Projetos from '../pages/projetos';
 import Transacao from '../pages/transacao';
-import NewProjetos from "../pages/newProjetos";
 
 //admin
 import Tag from '../pages/admin/tag';
@@ -41,7 +40,6 @@ const Body = () => {
                     <Route path="/tipo-gasto" element={<TipoGasto />} />
                     <Route path="/empresa" element={<Empresa />} />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/new-projetos" element={<NewProjetos />} />
 
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
